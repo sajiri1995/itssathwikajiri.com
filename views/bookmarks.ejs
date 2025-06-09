@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My X Bookmarks | itssathwikajiri.com</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>My Saved X Bookmarks</h1>
+    <p>Organized by profile</p>
+  </header>
+
+  <main>
+    <% bookmarks.forEach(author => { %>
+      <section class="author-section">
+        <div class="author-header">
+          <img src="<%= author.profile_image %>" alt="<%= author.username %>">
+          <h2>@<%= author.username %></h2>
+          <span class="count"><%= author.tweets.length %> bookmarks</span>
+        </div>
+
+        <div class="tweets">
+          <% author.tweets.forEach(tweet => { %>
+            <div class="tweet-card">
+              <p><%= tweet.text %></p>
+              <div class="tweet-meta">
+                <time><%= new Date(tweet.created_at).toLocaleDateString() %></time>
+                <span>❤️ <%= tweet.likes %></span>
+                <a href="<%= tweet.url %>" target="_blank">View on X</a>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </section>
+    <% }); %>
+  </main>
+
+  <footer>
+    <p>Automatically updated from X bookmarks • itssathwikajiri.com</p>
+  </footer>
+</body>
+</html>
